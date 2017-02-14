@@ -1,0 +1,81 @@
+package com.example.allokgames.pokemongame;
+
+/**
+ * Created by Галимзянов Газинур on 17.04.2016.
+ */
+public class Lotad extends Pokemon {
+    Lotad(){
+        this.pok="lotad";
+        this.type1="Water";
+        this.type2="Grass";
+        this.exp=0;
+        this.spd=30;
+        this.maxexp=200;
+        this.hp=40;
+        this.maxhp=40;
+        this.atk=30;
+        this.happiness=70;
+        this.energy=100;
+        this.satiety=100;
+        this.firsty=100;
+        this.maxhpup=2;
+        this.spdup=2;
+        this.atkup=1;
+        this.defup=1;
+        this.maxfirsty=100;
+        this.maxenergy=100;
+        this.def=30;
+        this.lvl=5;
+        this.name="lotad";
+        this.maxsatiety=100;
+    }
+    Lotad(String name){
+        this.pok="lotad";
+        this.type1="Water";
+        this.type2="Grass";
+        this.exp=0;
+        this.spd=30;
+        this.maxexp=200;
+        this.hp=40;
+        this.maxhp=40;
+        this.atk=30;
+        this.happiness=70;
+        this.energy=100;
+        this.satiety=100;
+        this.firsty=100;
+        this.maxhpup=2;
+        this.spdup=2;
+        this.atkup=1;
+        this.defup=1;
+        this.maxfirsty=100;
+        this.maxenergy=100;
+        this.def=30;
+        this.lvl=5;
+        this.name=name;
+        this.maxsatiety=100;
+    }
+    Lotad(short spd, int exp, short maxexp, short hp, short maxhp, short atk, short happiness, short maxenergy, short maxsatiety, short firsty, short maxfirsty, short energy, short def, short lvl, String name, short satiety){
+        this.exp=exp;
+        this.spd=spd;
+        this.maxexp=maxexp;
+        this.hp=hp;
+        this.maxhpup=2;
+        this.spdup=1;
+        this.atkup=1;
+        this.defup=1;
+        this.maxhp=maxhp;
+        this.atk=atk;
+        this.happiness=happiness;
+        this.energy=energy;
+        this.satiety=satiety;
+        this.firsty=firsty;
+        this.maxfirsty=maxfirsty;
+        this.maxenergy=maxenergy;
+        this.pok="lotad";
+        this.type1="Water";
+        this.type2="Grass";
+        this.def=def;
+        this.lvl=lvl;
+        this.name=name;
+        this.maxsatiety=maxsatiety;}
+}

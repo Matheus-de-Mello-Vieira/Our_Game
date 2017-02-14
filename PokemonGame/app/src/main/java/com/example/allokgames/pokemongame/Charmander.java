@@ -1,0 +1,78 @@
+package com.example.allokgames.pokemongame;
+
+/**
+ * Created by Галимзянов Газинур on 17.04.2016.
+ */
+public class Charmander extends Pokemon {
+    Charmander(){
+        this.pok="charmander";
+        this.type1="Fire";
+        this.exp=0;
+        this.spd=65;
+        this.maxexp=200;
+        this.hp=39;
+        this.maxhp=39;
+        this.atk=52;
+        this.happiness=70;
+        this.energy=100;
+        this.satiety=100;
+        this.firsty=100;
+        this.maxhpup=2;
+        this.spdup=2;
+        this.atkup=1;
+        this.defup=1;
+        this.maxfirsty=100;
+        this.maxenergy=100;
+        this.def=43;
+        this.lvl=5;
+        this.name="charmander";
+        this.maxsatiety=100;
+    }
+    Charmander(String name){
+        this.pok="charmander";
+        this.type1="Fire";
+        this.exp=0;
+        this.maxhpup=2;
+        this.spdup=1;
+        this.atkup=1;
+        this.defup=1;
+        this.spd=65;
+        this.maxexp=200;
+        this.hp=39;
+        this.maxhp=39;
+        this.atk=52;
+        this.happiness=70;
+        this.energy=100;
+        this.satiety=100;
+        this.firsty=100;
+        this.maxfirsty=100;
+        this.maxenergy=100;
+        this.def=43;
+        this.lvl=5;
+        this.name=name;
+        this.maxsatiety=100;
+    }
+    Charmander(short spd, int exp, short maxexp, short hp, short maxhp, short atk, short happiness, short maxenergy, short maxsatiety, short firsty, short maxfirsty, short energy, short def, short lvl, String name, short satiety){
+        this.exp=exp;
+        this.spd=spd;
+        this.maxexp=maxexp;
+        this.hp=hp;
+        this.maxhpup=2;
+        this.spdup=1;
+        this.atkup=1;
+        this.defup=1;
+        this.maxhp=maxhp;
+        this.atk=atk;
+        this.happiness=happiness;
+        this.energy=energy;
+        this.satiety=satiety;
+        this.firsty=firsty;
+        this.maxfirsty=maxfirsty;
+        this.maxenergy=maxenergy;
+        this.def=def;
+        this.lvl=lvl;
+        this.name=name;
+        this.maxsatiety=maxsatiety;
+        this.type1="Fire";
+        this.pok="charmander";}
+}

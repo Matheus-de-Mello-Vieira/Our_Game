@@ -1,0 +1,81 @@
+package com.example.allokgames.pokemongame;
+
+/**
+ * Created by Галимзянов Газинур on 17.04.2016.
+ */
+public class Shieldon extends Pokemon {
+    Shieldon(){
+        this.pok="shieldon";
+        this.type1="Rock";
+        this.type2="Steel";
+        this.exp=0;
+        this.spd=30;
+        this.maxexp=200;
+        this.hp=30;
+        this.maxhp=30;
+        this.atk=42;
+        this.happiness=70;
+        this.energy=100;
+        this.satiety=100;
+        this.firsty=100;
+        this.maxhpup=2;
+        this.spdup=2;
+        this.atkup=1;
+        this.defup=1;
+        this.maxfirsty=100;
+        this.maxenergy=100;
+        this.def=118;
+        this.lvl=5;
+        this.name="shieldon";
+        this.maxsatiety=100;
+    }
+    Shieldon(String name){
+        this.pok="shieldon";
+        this.type1="Rock";
+        this.type2="Steel";
+        this.exp=0;
+        this.spd=30;
+        this.maxexp=200;
+        this.hp=30;
+        this.maxhp=30;
+        this.atk=42;
+        this.happiness=70;
+        this.energy=100;
+        this.satiety=100;
+        this.firsty=100;
+        this.maxhpup=2;
+        this.spdup=2;
+        this.atkup=1;
+        this.defup=1;
+        this.maxfirsty=100;
+        this.maxenergy=100;
+        this.def=118;
+        this.lvl=5;
+        this.name=name;
+        this.maxsatiety=100;
+    }
+    Shieldon(short spd, int exp, short maxexp, short hp, short maxhp, short atk, short happiness, short maxenergy, short maxsatiety, short firsty, short maxfirsty, short energy, short def, short lvl, String name, short satiety){
+        this.exp=exp;
+        this.spd=spd;
+        this.pok="shieldon";
+        this.type1="Rock";
+        this.type2="Steel";
+        this.maxexp=maxexp;
+        this.hp=hp;
+        this.maxhpup=2;
+        this.spdup=1;
+        this.atkup=1;
+        this.defup=1;
+        this.maxhp=maxhp;
+        this.atk=atk;
+        this.happiness=happiness;
+        this.energy=energy;
+        this.satiety=satiety;
+        this.firsty=firsty;
+        this.maxfirsty=maxfirsty;
+        this.maxenergy=maxenergy;
+        this.def=def;
+        this.lvl=lvl;
+        this.name=name;
+        this.maxsatiety=maxsatiety;}
+}

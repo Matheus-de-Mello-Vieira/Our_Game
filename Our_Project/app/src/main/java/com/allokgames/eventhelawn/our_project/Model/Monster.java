@@ -7,6 +7,9 @@ import java.util.ArrayList;
 /**
  * Created by User on 14.02.2017.
  */
+
+//мостров пока не трогал. более менее всё необходимое есть, как разберёмся с возможностями айтемов и скилов добавлю большее.
+
 public class Monster {
     private String name;
     private String type;

@@ -18,7 +18,7 @@ public class Bestiary {
         if (size < MAX_CAPACITY) {
             monsterList[size++] = monster;
         }
-        if (size >= MAX_CAPACITY) {
+		else{
             throw new NumberOfMonstersException();
         }
     }

@@ -18,7 +18,7 @@ public class PlayerItems {
         if (size < ITEM_LIST_CAPACITY) {
             itemList[size++] = item;
         }
-        if (size >= ITEM_LIST_CAPACITY) {
+        else {
             throw new NumberOfItemsException();
         }
     }

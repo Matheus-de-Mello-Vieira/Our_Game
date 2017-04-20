@@ -6,128 +6,102 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.UUID;
 
 /**
  * Created by User on 16.02.2017.
  */
 public class ClientActivity extends Activity {
-
-    private static final int MESSAGE_READ =0 ;
-    Handler mHandler;
+    private static final int REQUEST_ENABLE_BT = 1;
+    final int RECIEVE_MESSAGE = 1;        // Статус для Handler
+    private BluetoothAdapter btAdapter = null;
+    private BluetoothSocket btSocket = null;
+    private StringBuilder sb = new StringBuilder();
+    private ConnectedThread mConnectedThread;
+    String msg_exemple;
+    private static final String TAG = "bluetooth2";
+    Handler h;
     private static long a;
     private static long b;
     private static final UUID MY_UUID = new UUID(a, b);
-    BluetoothAdapter mBluetoothAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
 
-    private class ConnectThread extends Thread{
-        private final BluetoothSocket mmSocket;
-        private final BluetoothDevice mmDevice;
-        public ConnectThread(BluetoothDevice device){
-// используем вспомогательную переменную, которую в дальнейшем
-// свяжем с mmSocket,
-            BluetoothSocket tmp=null;
-            mmDevice= device;
-
-// получаем BluetoothSocket чтобы соединиться с BluetoothDevice
-            try{
-// MY_UUID это UUID, который используется и в сервере
-                tmp= device.createRfcommSocketToServiceRecord(MY_UUID);
-            } catch(IOException e){}
-            mmSocket= tmp;
-        }
-
-    public void run(){
-// Отменяем сканирование, поскольку оно тормозит соединение
-        mBluetoothAdapter.cancelDiscovery();
-
-        try{
-// Соединяемся с устройством через сокет.
-// Метод блокирует выполнение программы до
-// установки соединения или возникновения ошибки
-            mmSocket.connect();
-        } catch(IOException connectException){
-// Невозможно соединиться. Закрываем сокет и выходим.
-            try{
-                mmSocket.close();
-            } catch(IOException closeException){}
-            return;
-        }
-
-// управлчем соединением (в отдельном потоке)
-        manageConnectedSocket(mmSocket);
-    }
-
-    /** отмена ожидания сокета */
-    public void cancel(){
-        try{
-            mmSocket.close();
-        } catch(IOException e){}
-    }
-}
-    void manageConnectedSocket(BluetoothSocket mmSocket){
-
-    }
-    private class ConnectedThread extends Thread{
+    private class ConnectedThread extends Thread {
         private final BluetoothSocket mmSocket;
         private final InputStream mmInStream;
         private final OutputStream mmOutStream;
 
-        public ConnectedThread(BluetoothSocket socket){
-            mmSocket= socket;
-            InputStream tmpIn=null;
-            OutputStream tmpOut=null;
+        public ConnectedThread(BluetoothSocket socket) {
+            mmSocket = socket;
+            InputStream tmpIn = null;
+            OutputStream tmpOut = null;
 
-// Получить входящий и исходящий потоки данных
-            try{
-                tmpIn= socket.getInputStream();
-                tmpOut= socket.getOutputStream();
-            } catch(IOException e){}
+            // Get the input and output streams, using temp objects because
+            // member streams are final
+            try {
+                tmpIn = socket.getInputStream();
+                tmpOut = socket.getOutputStream();
+            } catch (IOException e) { }
 
-            mmInStream= tmpIn;
-            mmOutStream= tmpOut;
+            mmInStream = tmpIn;
+            mmOutStream = tmpOut;
         }
 
-        public void run(){
-            byte[] buffer=new byte[1024];// буферный массив
-            int bytes;// bytes returned from read()
+        public void run() {
+            // Keep listening to the InputStream until an exception occurs
+            while (true) {
+                try {
+                    int bytes = mmInStream.available();
+                    if (bytes == 0)
+                    {
+                        try {
+                            Thread.sleep(1);
+                        } catch (InterruptedException e) {
+                            // TODO Auto-generated catch block
+                            Log.d(TAG, "Ошибка приостановки потока");
+                        }
+                        continue;
+                    }
+                    byte[] buffer = new byte[bytes];  // buffer store for the stream
 
-// Прослушиваем InputStream пока не произойдет исключение
-            while(true){
-                try{
-// читаем из InputStream
-                    bytes= mmInStream.read(buffer);
-// посылаем прочитанные байты главной деятельности
-                    mHandler.obtainMessage(MESSAGE_READ, bytes,-1, buffer)
-                            .sendToTarget();
-                } catch(IOException e){
+                    // Read from the InputStream
+                    bytes = mmInStream.read(buffer);        // Получаем кол-во байт и само собщение в байтовый массив "buffer"
+                    Log.d(TAG, "Buffer ="+Arrays.toString(buffer));
+                    msg_exemple = Arrays.toString(buffer);
+                    h.obtainMessage(RECIEVE_MESSAGE, bytes, -1, buffer).sendToTarget();     // Отправляем в очередь сообщений Handler
+                } catch (IOException e) {
+                    Log.d(TAG, "Some error: Buffer");
                     break;
                 }
             }
         }
 
-        /* Вызываем этот метод из главной деятельности, чтобы отправить данные
-        удаленному устройству */
-        public void write(byte[] bytes){
-            try{
-                mmOutStream.write(bytes);
-            } catch(IOException e){}
+        /* Call this from the main activity to send data to the remote device */
+        public void write(String message) {
+            Log.d(TAG, "...Данные для отправки: " + message + "...");
+            byte[] msgBuffer = message.getBytes();
+            try {
+                mmOutStream.write(msgBuffer);
+            } catch (IOException e) {
+                Log.d(TAG, "...Ошибка отправки данных: " + e.getMessage() + "...");
+            }
         }
 
-        /* Вызываем этот метод из главной деятельности,
-        чтобы разорвать соединение */
-        public void cancel(){
-            try{
+        /* Call this from the main activity to shutdown the connection */
+        public void cancel() {
+            try {
                 mmSocket.close();
-            } catch(IOException e){}
+            } catch (IOException e) { }
         }
-}}
+    }
+}

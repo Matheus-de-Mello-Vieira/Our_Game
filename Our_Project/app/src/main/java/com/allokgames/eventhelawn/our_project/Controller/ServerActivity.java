@@ -28,6 +28,7 @@ public class ServerActivity extends Activity {
     }
     String NAME;
     BluetoothAdapter mBluetoothAdapter;
+    private AcceptThread thread;
     private class AcceptThread extends Thread{
         private final BluetoothServerSocket mmServerSocket;
 

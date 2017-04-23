@@ -2,6 +2,8 @@ package com.allokgames.eventhelawn.our_project.Model;
 
 import android.graphics.Bitmap;
 
+import com.allokgames.eventhelawn.our_project.Model.Items.Item;
+
 import java.util.ArrayList;
 
 /**
@@ -16,6 +18,7 @@ public class Monster {
     private ArrayList<Spell> spells;
     private ArrayList<Item> items;
     private ArrayList<Weakneses> weakneses;
+    private StatusEffects statusEffects;
     private int atk;
     private int def;
     private int spAtk;
@@ -70,5 +73,16 @@ public class Monster {
     public void maxRevive(){
         isDead=false;
         hp=maxHp;
+    }
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public StatusEffects getStatusEffects() {
+        return statusEffects;
+    }
+
+    public void setStatusEffects(StatusEffects statusEffects) {
+        this.statusEffects = statusEffects;
     }
 }

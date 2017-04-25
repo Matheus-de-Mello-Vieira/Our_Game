@@ -11,11 +11,11 @@ import java.util.ArrayList;
  */
 
 //мостров пока не трогал. более менее всё необходимое есть, как разберёмся с возможностями айтемов и скилов добавлю большее.
-
+//нужно статы в арай листе выводить
 public class Monster {
     private String name;
     private String type;
-    private ArrayList<Spell> spells;
+    public ArrayList<Spell> spells;
     private ArrayList<Item> items;
     private ArrayList<Weakneses> weakneses;
     private StatusEffects statusEffects;

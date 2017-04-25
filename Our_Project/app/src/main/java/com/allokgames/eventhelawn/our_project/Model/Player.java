@@ -6,13 +6,13 @@ package com.allokgames.eventhelawn.our_project.Model;
 
 public class Player {
     private Monster currentMonster;
-    private Bestiary bestiary;
-    private PlayerItems items;
+    private PlayerBestiaryList bestiary;
+    private PlayerItemsList items;
     private long money;
 
     Player() {
-        bestiary = new Bestiary();
-        items = new PlayerItems();
+        bestiary = new PlayerBestiaryList();
+        items = new PlayerItemsList();
         //Продумать конструктор (возможно добавление начального монстра в "бестиарий" и "текущего монстра")
     }
 
@@ -23,7 +23,7 @@ public class Player {
         currentMonster = monster;                                                                   //и предметы, или ещё как, я толком не знаю что именно можно получить
     }                                                                                               //"тапнув" на покупку/выбор в магазине/бестираии... Сделаю что могу а ты уж оценишь.
     public void changeActiveMonster(int valueOfMonsterInBestiary) {
-        currentMonster = bestiary.getMonsterFromBestiary(valueOfMonsterInBestiary);
+        currentMonster = bestiary.getMonster(valueOfMonsterInBestiary);
     }
 
 

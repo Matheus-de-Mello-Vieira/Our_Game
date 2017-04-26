@@ -85,4 +85,8 @@ public class Monster {
     public void setStatusEffects(StatusEffects statusEffects) {
         this.statusEffects = statusEffects;
     }
+    public ArrayList getStats(){
+        ArrayList a=new ArrayList();
+        return a;
+    }
 }

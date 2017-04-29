@@ -7,4 +7,5 @@ import com.allokgames.eventhelawn.our_project.Model.Monster;
  */
 public interface Item {
     void useItem(Monster monster);
+    String getName();
 }

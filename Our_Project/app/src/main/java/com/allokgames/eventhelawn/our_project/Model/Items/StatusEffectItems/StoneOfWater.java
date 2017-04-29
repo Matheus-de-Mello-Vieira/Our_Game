@@ -7,6 +7,12 @@ import com.allokgames.eventhelawn.our_project.Model.Monster;
  */
 
 public class StoneOfWater implements UsableStateBehaviour {
+    private static String NAME = "Stone of water";
+    @Override
+    public String getName() {
+        return NAME;
+    }
+
     public void useItem(Monster thisMonster) {
         thisMonster.getStatusEffects().setOnFire(false);
     }

@@ -7,6 +7,11 @@ import com.allokgames.eventhelawn.our_project.Model.Monster;
  */
 
 public class StoneOfBushing implements UsableStateBehaviour{
+    private static String NAME = "Stone of Bushing";
+    @Override
+    public String getName() {
+        return NAME;
+    }
     public void useItem(Monster enemyMonster) {
         enemyMonster.getStatusEffects().setOnFire(false);
     }

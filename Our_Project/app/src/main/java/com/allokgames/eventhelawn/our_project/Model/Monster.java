@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import com.allokgames.eventhelawn.our_project.Model.Items.Item;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by User on 14.02.2017.
@@ -48,11 +49,10 @@ public class Monster {
         this.spDef = spDef;
         this.hp = hp;
         this.maxHp = maxHp;
-        this.happines = happines;
         this.isDead = isDead;
         this.exp = exp;
         this.lvl = lvl;
-        this.stage = stage;
+        this.stage = stage;              //??
         this.view = view;
     }
     public void getDamage(int val){
@@ -84,5 +84,44 @@ public class Monster {
 
     public void setStatusEffects(StatusEffects statusEffects) {
         this.statusEffects = statusEffects;
+    }
+
+    @GetInfo
+    public ArrayList<String> getInfoList() {
+        ArrayList<String> info = new ArrayList<>();
+        info.add(name);
+        info.add(type);
+        Integer temp = atk;
+        info.add(temp.toString());
+        temp = spAtk;
+        info.add(temp.toString());
+        temp = spDef;
+        info.add(temp.toString());
+        temp = maxHp;
+        info.add(temp.toString());
+        temp = lvl;
+        info.add(temp.toString());
+
+        return info;
+    }
+
+    @GetStatNames
+    public ArrayList<String> getSpellListNames() {
+        ArrayList<String> spells = new ArrayList<>();
+        Iterator<Spell> iterator = this.spells.iterator();
+        while (iterator.hasNext()) {
+            spells.add(iterator.next().getName());
+        }
+        return spells;
+    }
+
+    @GetItemNames
+    public ArrayList<String> getItemList() {
+        ArrayList<String> items = new ArrayList<>();
+        Iterator<Item> iterator = this.items.iterator();
+        while (iterator.hasNext()) {
+            items.add(iterator.next().getName());
+        }
+        return items;
     }
 }

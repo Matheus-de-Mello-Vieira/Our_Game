@@ -7,6 +7,11 @@ import com.allokgames.eventhelawn.our_project.Model.Monster;
  */
 
 public class HealingSalve implements UsableHealingBehavior {
+    private static String NAME = "Healing salve";
+    @Override
+    public String getName() {
+        return NAME;
+    }
     public void useItem(Monster thatMonster) {
         thatMonster.getHealed(50);
     }
